@@ -4,8 +4,15 @@ using System.IO;
 
 namespace ArmaServerInfo
 {
+    /// <summary>
+    /// Provides logging methods
+    /// </summary>
     public static class Logger
     {
+        /// <summary>
+        /// Logs a raw packet
+        /// </summary>
+        /// <param name="packet"></param>
         public static void Log(Packet packet)
         {
             if (packet == null)
@@ -15,6 +22,10 @@ namespace ArmaServerInfo
                 "Packets\\{0}.bin", GetFileNameHeader());
             Log(fileName, packet.GetBytes());
         }
+        /// <summary>
+        /// Logs a collection of raw packets
+        /// </summary>
+        /// <param name="packets"></param>
         public static void Log(PacketCollection packets)
         {
             if (packets == null)
@@ -25,6 +36,10 @@ namespace ArmaServerInfo
                 Log(item);
             }
         }
+        /// <summary>
+        /// Logs the data part of a raw packet
+        /// </summary>
+        /// <param name="packet"></param>
         public static void LogData(Packet packet)
         {
             if (packet == null)

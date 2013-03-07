@@ -2,21 +2,30 @@
 
 namespace ArmaServerInfo
 {
-    [DebuggerDisplay("{Name}, Team: {Team}, Score: {Score}")]
+    /// <summary>
+    /// Player
+    /// </summary>
+    [DebuggerDisplay("{Name}")]
     public class Player
     {
+        /// <summary>
+        /// Name
+        /// </summary>
         public string Name { get; set; }
-        public string Team { get; set; }
-        public int Score { get; set; }
 
+        /// <summary>
+        /// Creates a new instance of the <see cref="Player"/> class.
+        /// </summary>
         public Player()
+            : this(null)
         { }
-        public Player(string name, string team = null, int score = 0)
-            : this()
+        /// <summary>
+        /// Creates a new instance of the <see cref="Player"/> class.
+        /// </summary>
+        /// <param name="name"></param>
+        public Player(string name)
         {
             this.Name = name;
-            this.Team = team;
-            this.Score = score;
         }
     }
 }

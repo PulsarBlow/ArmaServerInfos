@@ -1,6 +1,9 @@
 ﻿
 namespace ArmaServerInfo
 {
+    /// <summary>
+    /// Packet types
+    /// </summary>
     public enum PacketTypes
     {
         Challenge = 0x09,

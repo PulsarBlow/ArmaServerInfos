@@ -8,27 +8,64 @@ using System.Text.RegularExpressions;
 namespace ArmaServerInfo
 {
     /// <summary>
-    /// Encapsultates the game server data
+    /// Game server entity and its associated data
     /// </summary>
     public class GameServer
     {
         #region Members & Properties
         private const string DefaultName = "Unknown server";
+        /// <summary>
+        /// Network Settings (Host, Port) used by the <see cref="QueryClient"/> to connect to the server
+        /// </summary>
         public NetworkSettings Settings { get; protected set; }
+        /// <summary>
+        /// Custom name
+        /// </summary>
         public string Name { get; protected set; }
+        /// <summary>
+        /// Custom description
+        /// </summary>
         public string Description { get; protected set; }
+        /// <summary>
+        /// Gets the server online state.
+        /// </summary>
         public bool IsOnline { get; protected set; }
+        /// <summary>
+        /// Contains all the data relative to the server features.
+        /// </summary>
         public ServerInfo ServerInfo { get; protected set; }
+        /// <summary>
+        /// The list of player actually connected and playing on the server
+        /// </summary>
         public PlayerCollection Players { get; protected set; }
         #endregion
 
         #region Constructors
+        /// <summary>
+        /// Creates a new instance of the <see cref="GameServer"/> class.
+        /// </summary>
+        /// <param name="host">The IP address of the server</param>
+        /// <param name="name">The custom name you want to give to this server</param>
+        /// <param name="description">The custom description you want to give to this server</param>
         public GameServer(string host, string name = DefaultName, string description = null)
             : this(NetworkSettings.GetDefault(host), name, description)
         { }
+        /// <summary>
+        /// Creates a new instance of the <see cref="GameServer"/> class.
+        /// </summary>
+        /// <param name="host">The IP address of the server</param>
+        /// <param name="port">The port number of the server</param>
+        /// <param name="name">The custom name you want to give to this server</param>
+        /// <param name="description">The custom description you want to give to this server</param>
         public GameServer(string host, int port, string name = DefaultName, string description = null)
             : this(NetworkSettings.GetDefault(host, port), name, description)
         { }
+        /// <summary>
+        /// Creates a new instance of the <see cref="GameServer"/> class.
+        /// </summary>
+        /// <param name="settings"></param>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
         public GameServer(NetworkSettings settings, string name = DefaultName, string description = null)
         {
             if (settings == null)
@@ -93,6 +130,9 @@ namespace ArmaServerInfo
         #endregion
 
         #region Events System
+        /// <summary>
+        /// Occurs when the server online state changes while update.
+        /// </summary>
         public event EventHandler<bool> OnlineStateChanged;
         protected virtual void OnOnlineStateChanged(bool isOnline)
         {
